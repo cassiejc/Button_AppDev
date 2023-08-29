@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0;
+    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bac, bc;
     TextView t1;
+    private int Counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,76 +28,104 @@ public class MainActivity extends AppCompatActivity {
         b8 = findViewById(R.id.button8);
         b9 = findViewById(R.id.button9);
         b0 = findViewById(R.id.button10);
+        bac = findViewById(R.id.button11);
+        bc = findViewById(R.id.button12);
         t1 = findViewById(R.id.textView1);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("1");
+                update("1");
             }
         });
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("2");
+                update("2");
             }
         });
 
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("3");
+                update("3");
             }
         });
 
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("4");
+                update("4");
             }
         });
 
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("5");
+                update("5");
             }
         });
 
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("8");
+                update("8");
             }
         });
 
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("7");
+                update("7");
             }
         });
 
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("6");
+                update("6");
             }
         });
 
         b9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("9");
+                update("9");
             }
         });
 
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("0");
+                update("0");
             }
         });
+        bac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearNumber();
+            }
+        });
+        bc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void update(String newnumber){
+        String number = t1.getText().toString();
+        if(number.length()<22){
+            t1.setText(number + newnumber);
+            Counter++;
+        }else {
+            Toast.makeText(this, "Maximum number of digits reached", Toast.LENGTH_SHORT).show();
+        }
+        
+    }
+    private void clearNumber(){
+        t1.setText("");
+        Counter = 0;
     }
 }
