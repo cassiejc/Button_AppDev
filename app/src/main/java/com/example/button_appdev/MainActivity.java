@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         bac = findViewById(R.id.button11);
         bc = findViewById(R.id.button12);
         t1 = findViewById(R.id.textView1);
+        bc.setVisibility(View.INVISIBLE);
+
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
         bc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+                deleteLastCharacter();
+//                Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -119,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         if(number.length()<22){
             t1.setText(number + newnumber);
             Counter++;
+            bc.setVisibility(View.VISIBLE);
         }else {
             Toast.makeText(this, "Maximum number of digits reached", Toast.LENGTH_SHORT).show();
         }
@@ -128,4 +132,19 @@ public class MainActivity extends AppCompatActivity {
         t1.setText("");
         Counter = 0;
     }
+
+    private void deleteLastCharacter() {
+        String currentText = t1.getText().toString();
+
+        // Check if there's at least one character to delete
+        if (currentText.length() > 0) {
+            String newText = currentText.substring(0, currentText.length() - 1);
+            t1.setText(newText);
+
+            if (newText.isEmpty()) {
+                bc.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
 }
